@@ -27,13 +27,9 @@
       "pre-commit": "lint-staged"
     }
 },
-"lint-staged": {
-  "src/**/*.{js,jsx,ts,tsx,json,css}": [
-      "prettier --write",
-      "eslint --fix src/",
-      "tslint --fix --project .",
-      "git add"
-  ]},
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+  },
   "devDependencies": {
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
