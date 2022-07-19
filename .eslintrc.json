@@ -29,6 +29,5 @@
     "import/resolver": {
       "typescript": {}
     }
-  },
-  "exclude":["**/*.config.js"]
+  }
 }

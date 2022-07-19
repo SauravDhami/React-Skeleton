@@ -4,3 +4,4 @@ coverage
 *.css
 *.svg
 *.html
+*.config.js
