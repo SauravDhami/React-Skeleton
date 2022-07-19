@@ -4,10 +4,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  let value;
-  
+  let value
 
-  
   return (
     <div className='App'>
       <div>

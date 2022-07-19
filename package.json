@@ -23,8 +23,7 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint",
-    "*.js": "eslint --cache --fix"
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
