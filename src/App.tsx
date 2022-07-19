@@ -4,9 +4,6 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  let value
-  let value1
-
   return (
     <div className='App'>
       <div>
