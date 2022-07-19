@@ -26,9 +26,12 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-},
+  },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn eslint",
+      "yarn format"
+    ]
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
@@ -46,7 +49,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.14",
     "postcss-import": "^14.1.0",
