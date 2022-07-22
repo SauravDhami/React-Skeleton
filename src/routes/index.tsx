@@ -9,7 +9,7 @@ enum Roles {
 const Routes: RouteDefination[] = [
   {
     path: 'blog/:id',
-    element: 'blog-page',
+    element: 'single-blog-page.tsx',
     roles: [Roles.Admin],
   },
   {
@@ -51,10 +51,10 @@ function renderLazyComponent(component: string) {
   return <Component />
 }
 
-function route(options: any[], depth = 0): any[] {
-  return options.map((option: RouteDefination, idx) => (
+function route(options: any[]): any[] {
+  return options.map((option: RouteDefination) => (
     <Route key={option.path} path={option.path} element={renderLazyComponent(option.element)}>
-      {option?.children?.nested?.map((subRoute: NestedRouteSubDefination, idx: number) => (
+      {option?.children?.nested?.map((subRoute: NestedRouteSubDefination) => (
         <Route
           key={option.path + subRoute.path}
           path={subRoute.path}
