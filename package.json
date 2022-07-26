@@ -11,7 +11,7 @@
     "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
     "format": "prettier --write src//**/*.{ts,tsx,json,jsx,scss,css} --config ./.prettierrc",
     "prepare": "husky install",
-    "clean": "rm -rf .husky/ && rm -rf node_modules/ && rm -rf yarn.lock"
+    "clean": "rm -rf rm -rf node_modules/ && rm -rf yarn.lock"
   },
   "dependencies": {
     "react": "^18.2.0",
