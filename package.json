@@ -14,8 +14,11 @@
     "clean": "rm -rf rm -rf node_modules/ && rm -rf yarn.lock"
   },
   "dependencies": {
+    "i18next": "^21.8.14",
+    "i18next-browser-languagedetector": "^6.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^11.3.4",
     "react-router-dom": "^6.3.0"
   },
   "eslintConfig": {
