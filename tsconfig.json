@@ -18,5 +18,5 @@
   },
   "include": ["src","src/**/*.ts", "src/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "exclude":["**/*.config.js","src/vite-end.d.ts","src/**/*.svg","custom.d.ts"]
+  "exclude":["**/*.config.js","src/vite-end.d.ts","src/**/*.svg","custom.d.ts","src/themes/**/*.js"]
 }
