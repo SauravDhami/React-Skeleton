@@ -18,4 +18,4 @@ function isString(value: any): boolean {
   return typeof value === 'string' && value.length > 0
 }
 
-export { isUndefined, isString }
+export { isString,isUndefined }
