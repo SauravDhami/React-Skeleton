@@ -1,4 +1,5 @@
 import './App.css'
+import './localization/i18n'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
