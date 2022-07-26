@@ -3,7 +3,7 @@ import './localization/i18n'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { ROUTES } from './config/AppRoutes'
+import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
 import { CustomRoutes } from './routes/CustomRoute'
 
