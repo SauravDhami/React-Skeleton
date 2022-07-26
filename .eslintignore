@@ -5,3 +5,4 @@ coverage
 *.svg
 *.html
 *.config.js
+src/themes/*.js
