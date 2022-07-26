@@ -7,6 +7,7 @@ import { ROUTES } from './routes'
 
 function App() {
   console.log('hello world')
+  console.log('hello world')
   return (
     <BrowserRouter>
       <Routes>
