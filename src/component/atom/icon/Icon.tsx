@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { isString } from '../../../utils/common/common'
 
 type OUTLINE_IDENTIFIER = 'circular' | 'rectangle'

@@ -1,24 +1,23 @@
-import { useState } from 'react'
-import { Logo } from './constants/app-images'
 import './App.css'
-import { Button } from './component/atom'
+import './localization/i18n'
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import { ROUTES } from './constants/AppRoutes'
+import Home from './pages/home'
+import { CustomRoutes } from './routes/CustomRoute'
+import { GlobalThemeContextProvider } from './themes/ThemeContext'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [loading, setLoading] = useState(false)
   return (
-    <div className="App">
-      <div>
-        <Logo />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setLoading(true)} progress type="primary">
-          Button
-        </Button>
-      </div>
-      <p className="bg-green-600">Click on the Vite and React logos to learn more</p>
-    </div>
+    <BrowserRouter>
+      <GlobalThemeContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {CustomRoutes({ routes: ROUTES })}
+        </Routes>
+      </GlobalThemeContextProvider>
+    </BrowserRouter>
   )
 }
 
