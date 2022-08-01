@@ -29,17 +29,6 @@ export const AsyncConfirmationModal = ({
   return new Promise<boolean>((resolve) => {
     const actions: IButtonProps[] = [
       {
-        title: cancelLabel,
-        onClick: () => {
-          resolve(false)
-          GlobalModal.close()
-        },
-        noAnimation: true,
-        type: 'error',
-        outline: true,
-        className: 'w-[120px]',
-      },
-      {
         title: okayLabel,
         onClick: () => {
           resolve(true)
@@ -47,6 +36,17 @@ export const AsyncConfirmationModal = ({
         },
         type: 'primary',
         noAnimation: true,
+        outline: true,
+        className: 'w-[120px]',
+      },
+      {
+        title: cancelLabel,
+        onClick: () => {
+          resolve(false)
+          GlobalModal.close()
+        },
+        noAnimation: true,
+        type: 'error',
         outline: true,
         className: 'w-[120px]',
       },
