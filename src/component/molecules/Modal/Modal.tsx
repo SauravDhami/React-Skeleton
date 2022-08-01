@@ -27,7 +27,6 @@ export const Modal = forwardRef<HTMLDivElement, IModalProps>(
       contentClassName = '',
       onModalClose = () => {},
       hideCloseIcon = false,
-      height,
       width,
     }: IModalProps,
     ref,
@@ -50,7 +49,6 @@ export const Modal = forwardRef<HTMLDivElement, IModalProps>(
         'max-w-[90%]': modalSize === 'lg',
       },
       `${width && `w-[${width}px]`}`,
-      `${height && `w-[${height}px]`}`,
     ])
 
     const contentClasses = clsx(['p-0 m-0 p-3', contentClassName])

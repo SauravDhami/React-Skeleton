@@ -1,5 +1,5 @@
 import { IButtonProps } from '../types'
-import { GlobalModal } from './GlobalModal'
+import { GlobalModal } from './globalModal'
 export interface ConfirmationModalProps {
   title?: string
   message?: string
@@ -30,7 +30,7 @@ export const ConfirmationModal = ({
   okayLabel = 'Okay',
   onCancel = () => GlobalModal.close(),
   onOkay = () => {},
-  isCloseable = false,
+  isCloseable = true,
 }: ConfirmationModalProps) => {
   const modalAction: IButtonProps[] = [
     {
@@ -39,7 +39,10 @@ export const ConfirmationModal = ({
         onCancel()
         GlobalModal.close()
       },
+      noAnimation: true,
       type: 'error',
+      outline: true,
+      className: 'w-[120px]',
     },
     {
       title: okayLabel,
@@ -47,7 +50,10 @@ export const ConfirmationModal = ({
         onOkay()
         GlobalModal.close()
       },
-      type: 'success',
+      type: 'primary',
+      noAnimation: true,
+      outline: true,
+      className: 'w-[120px]',
     },
   ]
 
@@ -57,6 +63,8 @@ export const ConfirmationModal = ({
     title: title,
     isCloseable: isCloseable,
     hideCloseIcon: true,
+    modalSize: 'sm',
+    contentClassName: '',
     props: {
       message: message,
     },

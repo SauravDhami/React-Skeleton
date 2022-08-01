@@ -19,7 +19,7 @@ export const ModalHeader = ({
   return (
     <div className={classes}>
       {children}
-      {(!isCloseable || !hideCloseIcon) && (
+      {!hideCloseIcon && (
         <div className="absolute right-2 top-1/2  -translate-y-1/2 font-light ">
           <Button
             size="sm"
