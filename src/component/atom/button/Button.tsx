@@ -1,38 +1,8 @@
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
+import { IButtonProps } from '../../../types'
 import { isUndefined } from '../../../utils'
-
-export interface IButtonProps {
-  className?: string
-  size?: 'xs' | 'sm' | 'md' | 'lg'
-  type?: ButtonTypes
-  shape?: 'square' | 'circle'
-  active?: boolean
-  outline?: boolean
-  dashed?: boolean
-  wide?: boolean
-  block?: boolean
-  disabled?: boolean
-  noAnimation?: boolean
-  loading?: boolean
-  progress?: boolean
-  addTimeout?: boolean
-  tabIndex?: number
-  children: React.ReactNode
-  onClick: (...props: any) => void
-}
-
-export type ButtonTypes =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'ghost'
-  | 'link'
 
 const buttonTypeOptions = {
   default: '',
@@ -77,6 +47,7 @@ export const Button = ({
   children,
   tabIndex,
   onClick,
+  title,
 }: IButtonProps) => {
   const [loading, setLoading] = useState<any>(false)
 
@@ -86,21 +57,20 @@ export const Button = ({
     }
   }, [loadingProp])
 
-  let btnClasses: string[] | string = []
-
-  btnClasses.push(sizeOptions[size])
-
-  if (type) btnClasses.push(buttonTypeOptions[type])
-  if (active) btnClasses.push('btn-active')
-  if (outline) btnClasses.push('btn-outline')
-  if (dashed) btnClasses.push('btn-dashed')
-  if (wide) btnClasses.push('btn-wide')
-  if (block) btnClasses.push('btn-block')
-  if (shape) btnClasses.push(shapeOptions[shape])
-  if (noAnimation) btnClasses.push('no-animation')
-  if (loading) btnClasses.push('loading')
-
-  btnClasses = btnClasses.join(' ')
+  const btnClasses = clsx([
+    sizeOptions[size],
+    buttonTypeOptions[type],
+    {
+      'btn-active': active,
+      'btn-outline': outline,
+      'btn-dashed': dashed,
+      'btn-wide': wide,
+      'btn-block': block,
+      'no-animation': noAnimation,
+      loading: loading,
+    },
+    `${shape && shapeOptions[shape]}`,
+  ])
 
   const next = () => {
     setLoading(false)
@@ -132,7 +102,8 @@ export const Button = ({
       tabIndex={tabIndex}
       onClick={handleOnClick}
     >
-      {children}
+      {children && children}
+      {title && title}
     </button>
   )
 }
