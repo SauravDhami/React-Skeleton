@@ -1,15 +1,8 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { IModalHeader } from '../../../types'
 import { Button } from '../button/Button'
-
-interface IModalHeader {
-  children: React.ReactNode
-  className?: string
-  onClickBackdrop?: () => void
-  isCloseable?: boolean
-  hideCloseIcon?: boolean
-}
 
 export const ModalHeader = ({
   children,

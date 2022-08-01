@@ -1,29 +1,8 @@
 import clsx from 'clsx'
 import React, { forwardRef } from 'react'
 
-import { Button, IButtonProps, ModalActions, ModalHeader } from '../../atom'
-
-export type IModalProps = {
-  open?: boolean
-  responsive?: boolean
-  children?: any
-  className?: string
-  onClose?: () => void
-  modalSize?: 'xs' | 'sm' | 'md' | 'lg'
-  isCloseable?: boolean
-  closeButtonClassName?: string
-  title?: string
-  hideHeader?: boolean
-  headerComponent?: React.FC<any>
-  headerClassName?: string
-  actions?: IButtonProps[]
-  actionClassName?: string
-  contentClassName?: string
-  onModalClose?: () => void
-  hideCloseIcon?: boolean
-  height?: number
-  width?: number
-}
+import { IModalProps } from '../../../types'
+import { Button, ModalActions, ModalHeader } from '../../atom'
 
 export const Modal = forwardRef<HTMLDivElement, IModalProps>(
   (

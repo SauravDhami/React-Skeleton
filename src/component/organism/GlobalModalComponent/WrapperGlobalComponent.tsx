@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 
-import { GlobalModalComponent, GlobalModalComponentProps } from './index'
-
-export interface IGlobalModalOpenProps extends GlobalModalComponentProps {
-  component?: React.FC<any> // React FC as component
-  ref?: any // @todo specify ref object
-  id?: number
-}
+import { IGlobalModalOpenProps } from '../../../types'
+import { GlobalModalComponent } from './index'
 
 export class GlobalModalWrapper extends Component<unknown, { modals: IGlobalModalOpenProps[] }> {
   state: any = {
