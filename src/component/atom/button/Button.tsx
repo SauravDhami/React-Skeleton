@@ -34,12 +34,12 @@ export const Button = ({
   size = 'md',
   shape,
   type = 'default',
-  active,
-  outline,
+  active = false,
+  outline = false,
   dashed,
-  wide,
-  block,
-  disabled,
+  wide = false,
+  block = false,
+  disabled = false,
   noAnimation,
   loading: loadingProp,
   progress,
@@ -58,8 +58,7 @@ export const Button = ({
   }, [loadingProp])
 
   const btnClasses = clsx([
-    sizeOptions[size],
-    buttonTypeOptions[type],
+    `${sizeOptions[size]}  ${buttonTypeOptions[type]}`,
     {
       'btn-active': active,
       'btn-outline': outline,

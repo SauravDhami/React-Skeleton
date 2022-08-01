@@ -10,7 +10,7 @@ import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
 import { CustomRoutes } from './routes/CustomRoute'
 import { GlobalThemeContextProvider } from './themes/ThemeContext'
-import { GlobalModal } from './utils'
+import { AsyncConfirmationModal, GlobalModal } from './utils'
 
 let globalModalRef: any = null
 
@@ -33,15 +33,21 @@ function App() {
 }
 
 const TestModal = () => {
-  const openModal = () => {
-    GlobalModal.open({
-      title: 'This is Modal',
-      component: Content,
-      props: {
-        hello: 'hello',
-      },
-      onClose: () => {},
-    })
+  const openModal = async () => {
+    //   GlobalModal.open({
+    //     title: 'This is Modal',
+    //     component: Content,
+    //     props: {
+    //       hello: 'hello',
+    //     },
+    //     onClose: () => {},
+    //   })
+    // ConfirmationModal({
+    //   onOkay: () => {
+    //     console.log('handle onKay...')
+    //   },
+    // })
+    const confirm = await AsyncConfirmationModal({})
   }
 
   return (
