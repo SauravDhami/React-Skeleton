@@ -1,2 +1,3 @@
 export { isUndefined } from './common/common'
-export * from './GlobalModal'
+export * from './confirmationModal'
+export * from './globalModal'
