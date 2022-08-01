@@ -18,7 +18,6 @@ export type IModalProps = {
   contentClassName?: string
   onModalClose?: () => void
   hideCloseIcon?: boolean
-  height?: number
   width?: number
 }
 

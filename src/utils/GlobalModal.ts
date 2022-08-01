@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IGlobalModalOpenProps } from '../component/organism'
+import { IGlobalModalOpenProps } from '../types'
 
 export class GlobalModal {
   _globalModalRef = null //reference variable
