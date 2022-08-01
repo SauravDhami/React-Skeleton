@@ -34,17 +34,6 @@ export const ConfirmationModal = ({
 }: ConfirmationModalProps) => {
   const modalAction: IButtonProps[] = [
     {
-      title: cancelLabel,
-      onClick: () => {
-        onCancel()
-        GlobalModal.close()
-      },
-      noAnimation: true,
-      type: 'error',
-      outline: true,
-      className: 'w-[120px]',
-    },
-    {
       title: okayLabel,
       onClick: () => {
         onOkay()
@@ -52,6 +41,17 @@ export const ConfirmationModal = ({
       },
       type: 'primary',
       noAnimation: true,
+      outline: true,
+      className: 'w-[120px]',
+    },
+    {
+      title: cancelLabel,
+      onClick: () => {
+        onCancel()
+        GlobalModal.close()
+      },
+      noAnimation: true,
+      type: 'error',
       outline: true,
       className: 'w-[120px]',
     },
