@@ -18,8 +18,9 @@ export interface IButtonProps {
   progress?: boolean
   addTimeout?: boolean
   tabIndex?: number
-  children: React.ReactNode
+  children?: React.ReactNode
   onClick: (...props: any) => void
+  title?: string
 }
 
 export type ButtonTypes =
@@ -77,6 +78,7 @@ export const Button = ({
   children,
   tabIndex,
   onClick,
+  title,
 }: IButtonProps) => {
   const [loading, setLoading] = useState<any>(false)
 
@@ -132,7 +134,8 @@ export const Button = ({
       tabIndex={tabIndex}
       onClick={handleOnClick}
     >
-      {children}
+      {children && children}
+      {title && title}
     </button>
   )
 }
