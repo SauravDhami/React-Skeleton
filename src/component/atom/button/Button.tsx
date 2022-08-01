@@ -1,7 +1,7 @@
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
 import { isUndefined } from '../../../utils'
-
 export interface IButtonProps {
   className?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
@@ -88,21 +88,20 @@ export const Button = ({
     }
   }, [loadingProp])
 
-  let btnClasses: string[] | string = []
-
-  btnClasses.push(sizeOptions[size])
-
-  if (type) btnClasses.push(buttonTypeOptions[type])
-  if (active) btnClasses.push('btn-active')
-  if (outline) btnClasses.push('btn-outline')
-  if (dashed) btnClasses.push('btn-dashed')
-  if (wide) btnClasses.push('btn-wide')
-  if (block) btnClasses.push('btn-block')
-  if (shape) btnClasses.push(shapeOptions[shape])
-  if (noAnimation) btnClasses.push('no-animation')
-  if (loading) btnClasses.push('loading')
-
-  btnClasses = btnClasses.join(' ')
+  const btnClasses = clsx([
+    sizeOptions[size],
+    buttonTypeOptions[type],
+    {
+      'btn-active': active,
+      'btn-outline': outline,
+      'btn-dashed': dashed,
+      'btn-wide': wide,
+      'btn-block': block,
+      'no-animation': noAnimation,
+      loading: loading,
+    },
+    `${shape && shapeOptions[shape]}`,
+  ])
 
   const next = () => {
     setLoading(false)
