@@ -2,56 +2,17 @@ import clsx from 'clsx'
 import React, { forwardRef, useEffect, useState } from 'react'
 
 import { SearchIcon } from '../../../constants/app-images'
+import { IInputProps } from '../../../types/Atom'
 import { isUndefined } from '../../../utils'
 import { Icon } from '../icon/Icon'
 
-export interface IInputProps {
-  name?: string
-  value?: any
-  defaultValue?: any
-  type?: 'text' | 'search' | 'email' | 'number' | 'textarea' | 'tel'
-  placeholder?: string
-  min?: number
-  max?: number
-  maxLength?: number
-  showCounter?: boolean
-  error?: boolean
-  errorMessage?: string
-  className?: string
-  inputClassName?: string
-  fullWidth?: boolean
-  isRequired?: boolean
-  disabled?: boolean
-  readOnly?: boolean
-  autoFocus?: boolean
-  bordered?: boolean
-  tabIndex?: number
-  rows?: number
-  prefix?: React.ReactNode
-  suffix?: React.ReactNode
-  addonRight?: React.ReactNode
-  debounceParams?: DebouceParams
-  onChange?(value: any): void
-  onDebounceChange?(value: any): void
-  onBlur?(value: any): void
-  onClick?(e: any): void
-  onKeyUp?(e: any): void
-  onKeyDown?(e: any): void
-  size?: 'md' | 'sm' | 'lg'
-  contentClassName?: string
-}
 const inputSize = {
   md: 'input-md',
   sm: 'input-sm',
   lg: 'input-lg',
 }
 
-type DebouceParams = {
-  wait?: number
-  immediate?: boolean
-}
-
-const Input = forwardRef<HTMLDivElement, IInputProps>(
+export const Input = forwardRef<HTMLDivElement, IInputProps>(
   (
     {
       name,
@@ -233,5 +194,3 @@ const Input = forwardRef<HTMLDivElement, IInputProps>(
     )
   },
 )
-
-export default Input

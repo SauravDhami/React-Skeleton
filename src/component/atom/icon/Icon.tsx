@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 
 import { IconProps } from '../../../types'
@@ -15,23 +16,20 @@ export const Icon = ({
   height,
   isSvg = false,
 }: IconProps) => {
-  const CircularStyle = `icon-container  rounded-full`
-  const RectangleStyle = `icon-container rounded`
-
-  /** Getting style depends on outline  */
-  const getContainetStyle = (type?: string) => {
-    const styles: any = {
-      circular: `${CircularStyle} ${className}`,
-      rectangle: `${RectangleStyle} ${className}`,
-      default: `icon-container ${className}`,
-    }
-
-    return styles[type || 'default']
-  }
+  const containerClassName = clsx(
+    [
+      'icon-container',
+      {
+        'icon-container  rounded-full': outlined === 'circular',
+        'icon-container rounded': outlined === 'rectangle',
+      },
+    ],
+    className,
+  )
 
   return (
-    <div onClick={onClick} className={`${getContainetStyle(outlined)}`} style={style}>
-      <IconDisplay
+    <div onClick={onClick} className={containerClassName} style={style}>
+      <IconComponent
         source={source}
         iconColor={iconColor}
         iconClass={iconClass}
@@ -43,7 +41,7 @@ export const Icon = ({
   )
 }
 
-const IconDisplay = ({ source, height, size, iconClass, iconColor, isSvg }: any) => {
+const IconComponent = ({ source, height, size, iconClass, iconColor, isSvg }: any) => {
   const iconStyle = { height: height ? height : size, width: size }
   if (isSvg) {
     const SVGComp = source
