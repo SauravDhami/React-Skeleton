@@ -1,23 +1,8 @@
 import clsx from 'clsx'
 import React from 'react'
 
-export type BadgeProps = {
-  outline?: boolean
-  size?: 'lg' | 'md' | 'sm' | 'xs'
-  color?:
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'error'
-    | 'primary'
-    | 'secondary'
-    | 'accent'
-    | 'ghost'
-    | 'default'
-  responsive?: boolean
-  className?: string
-  children?: React.ReactNode
-}
+import { BadgeProps } from '../../../types'
+
 const badgeColorOptions = {
   default: '',
   primary: 'badge-primary',
@@ -43,6 +28,7 @@ export const Badge = ({
   color = 'default',
   responsive,
   className = '',
+  ...props
 }: BadgeProps): JSX.Element => {
   const classes = clsx([
     `badge`,
@@ -56,7 +42,7 @@ export const Badge = ({
   ])
 
   return (
-    <div aria-label="Badge" className={classes}>
+    <div aria-label="Badge" className={classes} {...props}>
       {children}
     </div>
   )
