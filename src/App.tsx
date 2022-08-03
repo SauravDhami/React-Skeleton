@@ -4,7 +4,7 @@ import './localization/i18n'
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Button } from './component/atom'
+import { Badge, Button } from './component/atom'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
@@ -52,7 +52,9 @@ const TestModal = () => {
 
   return (
     <div className="font-sans">
-      <Button onClick={openModal}>Open Modal</Button>
+      <Badge size={'md'} color="info" outline>
+        Hello 123
+      </Badge>
     </div>
   )
 }
