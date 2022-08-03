@@ -1,3 +1,3 @@
 import Logo from '../assets/react.svg'
-
-export { Logo }
+import SearchIcon from '../assets/search.svg'
+export { Logo, SearchIcon }

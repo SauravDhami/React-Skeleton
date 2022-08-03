@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 import React, { forwardRef, useEffect, useState } from 'react'
 
+import { SearchIcon } from '../../../constants/app-images'
 import { isUndefined } from '../../../utils'
+import { Icon } from '../icon/Icon'
 
 export interface IInputProps {
   name?: string
@@ -56,7 +58,7 @@ const Input = forwardRef<HTMLDivElement, IInputProps>(
       value: propValue = undefined,
       defaultValue,
       placeholder,
-      type = 'text',
+      type = 'search',
       prefix,
       suffix,
       className = '',
@@ -142,7 +144,7 @@ const Input = forwardRef<HTMLDivElement, IInputProps>(
         'input-bordered': bordered,
         'input-error': error,
         'w-full': fullWidth,
-        'pl-10': prefix,
+        'pl-10': prefix || type === 'search',
         'pr-10': suffix,
       },
       inputClassName,
@@ -179,7 +181,12 @@ const Input = forwardRef<HTMLDivElement, IInputProps>(
       <div className={mainClass}>
         <label className={labelClasses}>Your Email</label>
         <div className="relative mb-2">
-          {prefix && <div className={contentClasses}>{prefix}</div>}
+          {(prefix || type === 'search') && (
+            <div className={contentClasses}>
+              {prefix}
+              <Icon isSvg source={SearchIcon} iconColor="text-gray-500" />
+            </div>
+          )}
           {type !== 'textarea' ? (
             <input
               className={basicInputClass}
