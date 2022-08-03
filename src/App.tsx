@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Button } from './component/atom'
+import Input from './component/atom/Input'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
@@ -51,8 +52,10 @@ const TestModal = () => {
   }
 
   return (
-    <div className="font-sans">
+    <div className="font-sans w-96 ml-10">
       <Button onClick={openModal}>Open Modal</Button>
+      <Input />
+      <Input />
     </div>
   )
 }

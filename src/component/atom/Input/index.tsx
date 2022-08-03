@@ -1,241 +1,230 @@
-// import React, { forwardRef, useEffect, useState } from 'react';
+import clsx from 'clsx'
+import React, { forwardRef, useEffect, useState } from 'react'
 
-// export interface InputProps {
-//     name?: string;
-//     value?: any;
-//     defaultValue?: any;
-//     type?: 'text' | 'search' | 'email' | 'number' | 'textarea' | 'tel';
-//     placeholder?: string;
-//     min?: number;
-//     max?: number;
-//     maxLength?: number;
-//     showCounter?: boolean;
-//     error?: boolean;
-//     errorMessage?: string;
-//     className?: string;
-//     inputClassName?: string;
-//     fullWidth?: boolean;
-//     isRequired?: boolean;
-//     disabled?: boolean;
-//     readOnly?: boolean;
-//     autoFocus?: boolean;
-//     bordered?: boolean;
-//     tabIndex?: number;
-//     rows?: number;
-//     prefix?: React.ReactNode;
-//     suffix?: React.ReactNode;
-//     addonRight?: React.ReactNode;
-//     debounceParams?: DebouceParams;
-//     onChange?(value: any): void;
-//     onDebounceChange?(value: any): void;
-//     onBlur?(value: any): void;
-//     onClick?(e: any): void;
-//     onKeyUp?(e: any): void;
-//     onKeyDown?(e: any): void;
-// }
+import { isUndefined } from '../../../utils'
 
-// type DebouceParams = {
-//     wait?: number;
-//     immediate?: boolean;
-// };
+export interface IInputProps {
+  name?: string
+  value?: any
+  defaultValue?: any
+  type?: 'text' | 'search' | 'email' | 'number' | 'textarea' | 'tel'
+  placeholder?: string
+  min?: number
+  max?: number
+  maxLength?: number
+  showCounter?: boolean
+  error?: boolean
+  errorMessage?: string
+  className?: string
+  inputClassName?: string
+  fullWidth?: boolean
+  isRequired?: boolean
+  disabled?: boolean
+  readOnly?: boolean
+  autoFocus?: boolean
+  bordered?: boolean
+  tabIndex?: number
+  rows?: number
+  prefix?: React.ReactNode
+  suffix?: React.ReactNode
+  addonRight?: React.ReactNode
+  debounceParams?: DebouceParams
+  onChange?(value: any): void
+  onDebounceChange?(value: any): void
+  onBlur?(value: any): void
+  onClick?(e: any): void
+  onKeyUp?(e: any): void
+  onKeyDown?(e: any): void
+  size?: 'md' | 'sm' | 'lg'
+  contentClassName?: string
+}
+const inputSize = {
+  md: 'input-md',
+  sm: 'input-sm',
+  lg: 'input-lg',
+}
 
-// const Input = forwardRef(
-//     (
-//         {
-//             name,
-//             value: propValue = undefined,
-//             defaultValue,
-//             placeholder,
-//             type = 'text',
-//             prefix,
-//             suffix,
-//             addonRight,
-//             className = '',
-//             inputClassName = '',
-//             fullWidth,
-//             isRequired,
-//             disabled = false,
-//             bordered = false,
-//             readOnly = false,
-//             min = -9999999999,
-//             max = 9999999999,
-//             maxLength,
-//             showCounter,
-//             tabIndex,
-//             rows,
-//             error,
-//             errorMessage,
-//             autoFocus,
-//             debounceParams,
-//             onChange,
-//             onDebounceChange,
-//             onBlur,
-//             onClick,
-//             onKeyUp,
-//             onKeyDown,
-//         }: InputProps,
-//         ref: any
-//     ) => {
-//         const [value, setValue] = useState<any>(!IsUndefined(defaultValue) ? defaultValue : '');
+type DebouceParams = {
+  wait?: number
+  immediate?: boolean
+}
 
-//         useEffect(() => {
-//             if (propValue !== undefined) {
-//                 setValue(propValue);
-//             }
-//         }, [propValue]);
+const Input = forwardRef<HTMLDivElement, IInputProps>(
+  (
+    {
+      name,
+      value: propValue = undefined,
+      defaultValue,
+      placeholder,
+      type = 'text',
+      prefix,
+      suffix,
+      className = '',
+      inputClassName = '',
+      fullWidth,
+      isRequired,
+      disabled = false,
+      bordered = true,
+      readOnly = false,
+      min = -9999999999,
+      max = 9999999999,
+      tabIndex,
+      rows,
+      error,
+      errorMessage,
+      autoFocus,
+      debounceParams,
+      onChange,
+      onDebounceChange,
+      onBlur,
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      size = 'lg',
+      contentClassName = '',
+    }: IInputProps,
+    ref: any,
+  ) => {
+    const [value, setValue] = useState<any>(!isUndefined(defaultValue) ? defaultValue : '')
 
-//         const handleChange = (e: any) => {
-//             let val = e.target.value;
-//             try {
-//                 if (
-//                     propValue === undefined ||
-//                     typeof onBlur === 'function' ||
-//                     typeof onDebounceChange === 'function' ||
-//                     typeof onChange === 'function'
-//                 ) {
-//                     setValue(val);
-//                 }
+    useEffect(() => {
+      if (propValue !== undefined) {
+        setValue(propValue)
+      }
+    }, [propValue])
 
-//                 if (type === 'number') {
-//                     const actualVal = val;
-//                     val = +val || 0;
-//                     if (typeof max !== 'undefined' && val > max) {
-//                         return setValue(value);
-//                     }
-//                     if (actualVal.length && typeof min !== 'undefined' && val < min) {
-//                         return setValue(value || min);
-//                     }
-//                 }
+    const handleChange = (e: any) => {
+      let val = e.target.value
+      if (
+        propValue === undefined ||
+        typeof onBlur === 'function' ||
+        typeof onDebounceChange === 'function' ||
+        typeof onChange === 'function'
+      ) {
+        setValue(val)
+      }
 
-//                 if (typeof onChange === 'function' && e.type === 'change') {
-//                     if (typeof min !== 'undefined' && val < min) {
-//                         return;
-//                     }
-//                     onChange(val);
-//                 }
+      if (type === 'number') {
+        const actualVal = val
+        val = +val || 0
+        if (typeof max !== 'undefined' && val > max) {
+          return setValue(value)
+        }
+        if (actualVal.length && typeof min !== 'undefined' && val < min) {
+          return setValue(value || min)
+        }
+      }
 
-//                 if (typeof onDebounceChange === 'function' && e.type === 'change') {
-//                     Debounce(
-//                         onDebounceChange,
-//                         debounceParams?.wait || 1000,
-//                         debounceParams?.immediate || false
-//                     )(val);
-//                 }
+      if (typeof onChange === 'function' && e.type === 'change') {
+        if (typeof min !== 'undefined' && val < min) {
+          return
+        }
+        onChange(val)
+      }
 
-//                 if (typeof onBlur === 'function' && e.type === 'blur') {
-//                     onBlur(val);
-//                 }
-//             } catch (e) {
-//                 console.warn(e);
-//             }
-//         };
+      // if (typeof onDebounceChange === 'function' && e.type === 'change') {
+      //     Debounce(
+      //         onDebounceChange,
+      //         debounceParams?.wait || 1000,
+      //         debounceParams?.immediate || false
+      //     )(val);
+      // }
 
-//         return (
-//             <div>
-//                 <label className={`${prefix ? 'input-group-plain' : ''} ${className}`}>
-//                     {prefix && (
-//                         <span className={`${disabled ? '!text-base-secondary' : ''}`}>
-//                             {prefix}
-//                         </span>
-//                     )}
+      if (typeof onBlur === 'function' && e.type === 'blur') {
+        onBlur(val)
+      }
+    }
 
-//                     {(type === 'text' ||
-//                         type === 'number' ||
-//                         type === 'search' ||
-//                         type === 'email') && (
-//                         <input
-//                             className={classNames('input max-w-full', inputClassName, {
-//                                 'input-bordered': bordered,
-//                                 'input-error': error,
-//                                 'w-full': fullWidth,
-//                             })}
-//                             name={name}
-//                             type={type}
-//                             value={value}
-//                             placeholder={placeholder}
-//                             onChange={handleChange}
-//                             onBlur={handleChange}
-//                             onClick={onClick}
-//                             onKeyUp={onKeyUp}
-//                             onKeyDown={onKeyDown}
-//                             disabled={disabled}
-//                             readOnly={readOnly}
-//                             autoFocus={autoFocus}
-//                             tabIndex={tabIndex}
-//                             min={min}
-//                             max={max}
-//                             ref={ref}
-//                         />
-//                     )}
-//                     {type === 'textarea' && (
-//                         <textarea
-//                             className={classNames('textarea max-w-full', inputClassName, {
-//                                 'px-2': !prefix,
-//                                 'pr-2 pl-1': prefix,
-//                                 'textarea-bordered': bordered,
-//                                 'textarea-error': error,
-//                                 'w-full': fullWidth,
-//                             })}
-//                             name={name}
-//                             value={value}
-//                             rows={rows}
-//                             placeholder={placeholder}
-//                             required={isRequired}
-//                             onChange={handleChange}
-//                             onBlur={handleChange}
-//                             onClick={onClick}
-//                             onKeyUp={onKeyUp}
-//                             onKeyDown={onKeyDown}
-//                             tabIndex={tabIndex}
-//                             disabled={disabled}
-//                             readOnly={readOnly}
-//                             ref={ref}
-//                         />
-//                     )}
+    const basicInputClass = clsx(
+      'w-full  input rounded-md focus:input-primary focus:outline-offset-0',
+      inputSize[size],
+      {
+        'input-bordered': bordered,
+        'input-error': error,
+        'w-full': fullWidth,
+        'pl-10': prefix,
+        'pr-10': suffix,
+      },
+      inputClassName,
+    )
 
-//                     {type === 'tel' && (
-//                         <input
-//                             className={classNames('input', inputClassName, {
-//                                 'input-bordered': bordered,
-//                                 'input-error': error,
-//                                 'w-full': fullWidth,
-//                             })}
-//                             name={name}
-//                             type={type}
-//                             value={value}
-//                             placeholder={placeholder}
-//                             onChange={handleChange}
-//                             onBlur={handleChange}
-//                             onClick={onClick}
-//                             onKeyUp={onKeyUp}
-//                             onKeyDown={onKeyDown}
-//                             tabIndex={tabIndex}
-//                             disabled={disabled}
-//                             readOnly={readOnly}
-//                             autoFocus={autoFocus}
-//                             ref={ref}
-//                         />
-//                     )}
-//                     {suffix && <span>{suffix}</span>}
-//                     {addonRight && <span className="addon-right">{addonRight}</span>}
-//                 </label>
-//                 {showCounter && maxLength && (
-//                     <div
-//                         className={`row-flex justify-end text-xs ${
-//                             ((value && value.length) || 0) >= maxLength
-//                                 ? 'text-error'
-//                                 : 'text-disabled-100'
-//                         }`}
-//                     >
-//                         {(value && value.length) || 0}/{maxLength}
-//                     </div>
-//                 )}
-//                 {error && errorMessage ? (
-//                     <div className="text-sm font-normal pt-1 text-error">{errorMessage}</div>
-//                 ) : null}
-//             </div>
-//         );
-//     }
-// );
+    const textareaClasses = clsx(
+      'w-full textarea rounded-sm focus:input-primary focus:outline-offset-0 text-lg',
+      {
+        'textarea-bordered': bordered,
+        'textarea-error': error,
+        'w-full': fullWidth,
+        'pl-10': prefix,
+        'pr-10': suffix,
+      },
+      inputClassName,
+    )
 
-// export default Input;
+    const contentClasses = clsx(
+      'flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none',
+      {
+        'left-0 pl-3 ': prefix,
+        'right-0  pr-3': suffix,
+      },
+      contentClassName,
+    )
+
+    const labelClasses = clsx('block text-lg label-text mb-2 group-focus-within:text-primary', {
+      'text-error': error,
+    })
+
+    const mainClass = clsx('group', className)
+
+    return (
+      <div className={mainClass}>
+        <label className={labelClasses}>Your Email</label>
+        <div className="relative mb-2">
+          {prefix && <div className={contentClasses}>{prefix}</div>}
+          {type !== 'textarea' ? (
+            <input
+              className={basicInputClass}
+              name={name}
+              type={type}
+              value={value}
+              placeholder={placeholder}
+              onChange={handleChange}
+              onBlur={handleChange}
+              onClick={onClick}
+              onKeyUp={onKeyUp}
+              onKeyDown={onKeyDown}
+              disabled={disabled}
+              readOnly={readOnly}
+              autoFocus={autoFocus}
+              tabIndex={tabIndex}
+              min={min}
+              max={max}
+              ref={ref}
+            />
+          ) : (
+            <textarea
+              className={textareaClasses}
+              name={name}
+              value={value}
+              rows={rows}
+              placeholder={placeholder}
+              required={isRequired}
+              onChange={handleChange}
+              onBlur={handleChange}
+              onClick={onClick}
+              onKeyUp={onKeyUp}
+              onKeyDown={onKeyDown}
+              tabIndex={tabIndex}
+              disabled={disabled}
+              readOnly={readOnly}
+              ref={ref}
+            />
+          )}
+          {suffix && <div className={contentClasses}>{suffix}</div>}
+        </div>
+        {error && <p className="text-error text-sm font-normal">{errorMessage}</p>}
+      </div>
+    )
+  },
+)
+
+export default Input
