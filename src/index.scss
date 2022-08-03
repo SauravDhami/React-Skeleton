@@ -27,4 +27,22 @@
     top: 50%;
     transform: translate(-50%, -50%);
   }
+  input:focus,
+  textarea:focus {
+    @apply outline-1 focus:outline-1 #{!important};
+  }
+  .input-sm {
+    height: 2rem !important;
+    min-height: 2rem !important;
+  }
+
+  .input-md {
+    height: 2.5rem !important;
+    min-height: 2.5rem !important;
+  }
+
+  .input-lg {
+    height: 3rem !important;
+    min-height: 3rem !important;
+  }
 }
