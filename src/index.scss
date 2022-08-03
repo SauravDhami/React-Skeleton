@@ -7,14 +7,11 @@
   box-sizing: border-box;
 }
 
-
-
 @layer base {
-
-  input[type="number"]{
+  input[type='number'] {
     -moz-appearance: textfield;
   }
-  
+
   .btn-outline.btn-primary,
   .btn-outline.btn-error {
     &.btn[disabled],
