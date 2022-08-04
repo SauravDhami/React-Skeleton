@@ -34,20 +34,22 @@ function App() {
 
 const TestModal = () => {
   const openModal = async () => {
-    //   GlobalModal.open({
-    //     title: 'This is Modal',
-    //     component: Content,
-    //     props: {
-    //       hello: 'hello',
-    //     },
-    //     onClose: () => {},
-    //   })
+    GlobalModal.open({
+      title: 'This is Modal',
+      component: Content,
+      // isSlidePane: true,
+      // width: '300px',
+      props: {
+        hello: 'hello',
+      },
+      onClose: () => {},
+    })
     // ConfirmationModal({
     //   onOkay: () => {
     //     console.log('handle onKay...')
     //   },
     // })
-    const confirm = await AsyncConfirmationModal({})
+    // const confirm = await AsyncConfirmationModal({})
   }
 
   return (
@@ -60,7 +62,7 @@ const TestModal = () => {
 }
 
 const Content = () => (
-  <div>
+  <div className="bg-red-200">
     You have been selected for a chance to get one year of subscription to use Wikipedia for free!
   </div>
 )
