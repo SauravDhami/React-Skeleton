@@ -37,7 +37,7 @@ export const Modal = forwardRef<HTMLDivElement, IModalProps>(
       'modal-open': open,
       'modal-bottom sm:modal-middle': responsive,
     })
-    const w = '1200px'
+
     const bodyClasses = clsx(
       'modal-box rounded-md  p-0 flex flex-col max-h-full  overflow-hidden',
       className,
