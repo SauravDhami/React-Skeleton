@@ -1,3 +1,4 @@
+export * from './badge'
 export { Button } from './button/Button'
 export { Icon } from './icon/Icon'
 export * from './ModalActions/ModalActions'

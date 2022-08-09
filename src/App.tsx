@@ -4,14 +4,13 @@ import './localization/i18n'
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Button } from './component/atom'
-import Input from './component/atom/Input'
+import { Badge, Button } from './component/atom'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
 import { CustomRoutes } from './routes/CustomRoute'
 import { GlobalThemeContextProvider } from './themes/ThemeContext'
-import { AsyncConfirmationModal, GlobalModal } from './utils'
+import { GlobalModal } from './utils'
 
 let globalModalRef: any = null
 
@@ -48,14 +47,14 @@ const TestModal = () => {
     //     console.log('handle onKay...')
     //   },
     // })
-    const confirm = await AsyncConfirmationModal({})
+    // const confirm = await AsyncConfirmationModal({})
   }
 
   return (
-    <div className="font-sans w-96 ml-10">
-      <Button onClick={openModal}>Open Modal</Button>
-      <Input />
-      <Input />
+    <div className="font-sans">
+      <Badge size={'md'} color="info" outline>
+        Hello 123
+      </Badge>
     </div>
   )
 }
