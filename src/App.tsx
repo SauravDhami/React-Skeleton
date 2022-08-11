@@ -5,6 +5,8 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Button, Input } from './component/atom'
+import CircularLoader from './component/atom/loading/circularLoader'
+import DotLoader from './component/atom/loading/DotLoader'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
@@ -53,8 +55,10 @@ const TestModal = () => {
   return (
     <div className="font-sans w-96 ml-10">
       <Button onClick={openModal}>Open Modal</Button>
+      <Input disabled />
       <Input />
-      <Input />
+      <CircularLoader size={50} thikness={6} />
+      <DotLoader />
     </div>
   )
 }

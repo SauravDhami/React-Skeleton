@@ -57,8 +57,9 @@ export const Button = ({
     }
   }, [loadingProp])
 
-  const btnClasses = clsx([
-    `${sizeOptions[size]}  ${buttonTypeOptions[type]}`,
+  const btnClasses = clsx(
+    sizeOptions[size],
+    buttonTypeOptions[type],
     {
       'btn-active': active,
       'btn-outline': outline,
@@ -69,7 +70,7 @@ export const Button = ({
       loading: loading,
     },
     `${shape && shapeOptions[shape]}`,
-  ])
+  )
 
   const next = () => {
     setLoading(false)
