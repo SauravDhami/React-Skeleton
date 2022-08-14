@@ -12,6 +12,7 @@ export const GlobalModalComponent = forwardRef(
       isCloseable = false,
       onClose = () => {},
       closeModal = () => {},
+      width,
       ...args
     }: GlobalModalComponentProps,
     ref: any,
@@ -23,7 +24,7 @@ export const GlobalModalComponent = forwardRef(
     }
 
     return (
-      <Modal open={isOpen || false} onModalClose={onModalClose} {...args} ref={ref}>
+      <Modal open={isOpen || false} width={width} onModalClose={onModalClose} {...args} ref={ref}>
         {MainComponent && <MainComponent {...props} isInModal={true} />}
       </Modal>
     )

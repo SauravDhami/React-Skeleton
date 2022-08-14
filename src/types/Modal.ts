@@ -18,7 +18,9 @@ export type IModalProps = {
   contentClassName?: string
   onModalClose?: () => void
   hideCloseIcon?: boolean
-  width?: number
+  width?: string
+  isSlidePane?: boolean
+  position?: 'right' | 'left'
 }
 
 export interface IModalActionsProps {
@@ -55,7 +57,9 @@ export type GlobalModalComponentProps = {
   contentClassName?: string
   hideCloseIcon?: boolean
   height?: number
-  width?: number
+  width?: string
+  isSlidePane?: boolean
+  position?: 'right' | 'left'
 }
 
 export interface IGlobalModalOpenProps extends GlobalModalComponentProps {
