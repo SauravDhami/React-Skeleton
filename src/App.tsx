@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Button, Input } from './component/atom'
 import CircularLoader from './component/atom/loading/circularLoader'
-import DotLoader from './component/atom/loading/DotLoader'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
 import Home from './pages/home'
+import Login from './pages/login'
 import { CustomRoutes } from './routes/CustomRoute'
 import { GlobalThemeContextProvider } from './themes/ThemeContext'
 import { AsyncConfirmationModal, GlobalModal } from './utils'
@@ -24,48 +24,12 @@ function App() {
     <BrowserRouter>
       <GlobalThemeContextProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           {CustomRoutes({ routes: ROUTES })}
         </Routes>
-        <TestModal />
         <GlobalModalWrapper ref={(el) => (globalModalRef = el)} />
       </GlobalThemeContextProvider>
     </BrowserRouter>
   )
 }
-
-const TestModal = () => {
-  const openModal = async () => {
-    //   GlobalModal.open({
-    //     title: 'This is Modal',
-    //     component: Content,
-    //     props: {
-    //       hello: 'hello',
-    //     },
-    //     onClose: () => {},
-    //   })
-    // ConfirmationModal({
-    //   onOkay: () => {
-    //     console.log('handle onKay...')
-    //   },
-    // })
-    const confirm = await AsyncConfirmationModal({})
-  }
-
-  return (
-    <div className="font-sans w-96 ml-10">
-      <Button onClick={openModal}>Open Modal</Button>
-      <Input disabled />
-      <Input />
-      <CircularLoader size={50} thikness={6} />
-      <DotLoader />
-    </div>
-  )
-}
-
-const Content = () => (
-  <div>
-    You have been selected for a chance to get one year of subscription to use Wikipedia for free!
-  </div>
-)
 export default App

@@ -1,9 +1,8 @@
 import clsx from 'clsx'
-import React, { forwardRef, useEffect, useState } from 'react'
+import { forwardRef } from 'react'
 
 import { SearchIcon } from '../../../constants/app-images'
 import { IInputProps } from '../../../types/Atom'
-import { isUndefined } from '../../../utils'
 import { Icon } from '../icon/Icon'
 
 const inputSize = {
@@ -12,14 +11,11 @@ const inputSize = {
   lg: 'input-lg',
 }
 
-export const Input = forwardRef<HTMLDivElement, IInputProps>(
+export const Input = forwardRef(
   (
     {
-      name,
-      value: propValue = undefined,
-      defaultValue,
       placeholder,
-      type = 'search',
+      type = 'text',
       prefix,
       suffix,
       className = '',
@@ -29,77 +25,27 @@ export const Input = forwardRef<HTMLDivElement, IInputProps>(
       disabled = false,
       bordered = true,
       readOnly = false,
-      min = -9999999999,
-      max = 9999999999,
+      // min = -9999999999,
+      // max = 9999999999,
       tabIndex,
       rows,
       error,
-      errorMessage,
       autoFocus,
-      debounceParams,
-      onChange,
-      onDebounceChange,
-      onBlur,
+      // debounceParams,
       onClick,
       onKeyUp,
       onKeyDown,
       size = 'lg',
       contentClassName = '',
+      label,
+      name,
+      onBlur,
+      onChange,
     }: IInputProps,
-    ref: any,
+    ref: React.Ref<any>,
   ) => {
-    const [value, setValue] = useState<any>(!isUndefined(defaultValue) ? defaultValue : '')
-
-    useEffect(() => {
-      if (propValue !== undefined) {
-        setValue(propValue)
-      }
-    }, [propValue])
-
-    const handleChange = (e: any) => {
-      let val = e.target.value
-      if (
-        propValue === undefined ||
-        typeof onBlur === 'function' ||
-        typeof onDebounceChange === 'function' ||
-        typeof onChange === 'function'
-      ) {
-        setValue(val)
-      }
-
-      if (type === 'number') {
-        const actualVal = val
-        val = +val || 0
-        if (typeof max !== 'undefined' && val > max) {
-          return setValue(value)
-        }
-        if (actualVal.length && typeof min !== 'undefined' && val < min) {
-          return setValue(value || min)
-        }
-      }
-
-      if (typeof onChange === 'function' && e.type === 'change') {
-        if (typeof min !== 'undefined' && val < min) {
-          return
-        }
-        onChange(val)
-      }
-
-      // if (typeof onDebounceChange === 'function' && e.type === 'change') {
-      //     Debounce(
-      //         onDebounceChange,
-      //         debounceParams?.wait || 1000,
-      //         debounceParams?.immediate || false
-      //     )(val);
-      // }
-
-      if (typeof onBlur === 'function' && e.type === 'blur') {
-        onBlur(val)
-      }
-    }
-
     const basicInputClass = clsx(
-      'w-full  input rounded-md focus:input-primary focus:outline-offset-0',
+      'w-full  input rounded-md focus:input-primary focus:outline-offset-0 px-3',
       inputSize[size],
       {
         'input-bordered': bordered,
@@ -140,12 +86,12 @@ export const Input = forwardRef<HTMLDivElement, IInputProps>(
 
     return (
       <div className={mainClass}>
-        <label className={labelClasses}>Your Email</label>
+        {label && <label className={labelClasses}>{label}</label>}
         <div className="relative mb-2">
           {(prefix || type === 'search') && (
             <div className={contentClasses}>
               {prefix}
-              <Icon isSvg source={SearchIcon} iconColor="text-gray-500" />
+              {type === 'search' && <Icon isSvg source={SearchIcon} iconColor="text-gray-500" />}
             </div>
           )}
           {type !== 'textarea' ? (
@@ -153,10 +99,7 @@ export const Input = forwardRef<HTMLDivElement, IInputProps>(
               className={basicInputClass}
               name={name}
               type={type}
-              value={value}
               placeholder={placeholder}
-              onChange={handleChange}
-              onBlur={handleChange}
               onClick={onClick}
               onKeyUp={onKeyUp}
               onKeyDown={onKeyDown}
@@ -164,20 +107,20 @@ export const Input = forwardRef<HTMLDivElement, IInputProps>(
               readOnly={readOnly}
               autoFocus={autoFocus}
               tabIndex={tabIndex}
-              min={min}
-              max={max}
+              // min={min}
+              // max={max}
               ref={ref}
+              // value={value}
+              onBlur={onBlur}
+              onChange={onChange}
             />
           ) : (
             <textarea
               className={textareaClasses}
-              name={name}
-              value={value}
+              // name={name}
               rows={rows}
               placeholder={placeholder}
               required={isRequired}
-              onChange={handleChange}
-              onBlur={handleChange}
               onClick={onClick}
               onKeyUp={onKeyUp}
               onKeyDown={onKeyDown}
@@ -185,11 +128,13 @@ export const Input = forwardRef<HTMLDivElement, IInputProps>(
               disabled={disabled}
               readOnly={readOnly}
               ref={ref}
+              onBlur={onBlur}
+              onChange={onChange}
             />
           )}
           {suffix && <div className={contentClasses}>{suffix}</div>}
         </div>
-        {error && <p className="text-error text-sm font-normal">{errorMessage}</p>}
+        {error && <p className="text-error text-sm font-normal">{error}</p>}
       </div>
     )
   },
