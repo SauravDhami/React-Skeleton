@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useLayoutEffect, useMemo, useState } from 'react'
 
 export interface ThemeContextProps {
   theme: string
@@ -30,7 +30,7 @@ export const GlobalThemeContextProvider = ({
 }) => {
   const [theme, setTheme] = useState(value)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const storeTheme = localStorage.getItem('theme')
     applyTheme(storeTheme || 'default')
   }, [])

@@ -1,3 +1,4 @@
+import { ChangeHandler } from 'react-hook-form'
 export type BadgeProps = {
   outline?: boolean
   size?: 'lg' | 'md' | 'sm' | 'xs'
@@ -36,16 +37,16 @@ export interface ITooltipProps {
 
 export interface IInputProps {
   name?: string
-  value?: any
+  // value?: any
   defaultValue?: any
-  type?: 'text' | 'search' | 'email' | 'number' | 'textarea' | 'tel'
+  type?: 'text' | 'search' | 'email' | 'number' | 'textarea' | 'tel' | 'password'
   placeholder?: string
-  min?: number
-  max?: number
-  maxLength?: number
+  // min?: number
+  // max?: number
+  // maxLength?: number
   showCounter?: boolean
-  error?: boolean
-  errorMessage?: string
+  error?: any
+  // errorMessage?: string
   className?: string
   inputClassName?: string
   fullWidth?: boolean
@@ -59,18 +60,68 @@ export interface IInputProps {
   prefix?: React.ReactNode
   suffix?: React.ReactNode
   addonRight?: React.ReactNode
-  debounceParams?: DebouceParams
-  onChange?(value: any): void
-  onDebounceChange?(value: any): void
-  onBlur?(value: any): void
+  // debounceParams?: DebouceParams
+  onChange: ChangeHandler
+  // onDebounceChange?(e: any): void
+  onBlur: ChangeHandler
   onClick?(e: any): void
   onKeyUp?(e: any): void
   onKeyDown?(e: any): void
   size?: 'md' | 'sm' | 'lg'
   contentClassName?: string
+  label?: string
+  ref?: React.Ref<any>
 }
 
 type DebouceParams = {
   wait?: number
   immediate?: boolean
+}
+
+export interface IButtonProps {
+  className?: string
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  type?: ButtonTypes
+  shape?: 'square' | 'circle'
+  active?: boolean
+  outline?: boolean
+  dashed?: boolean
+  wide?: boolean
+  block?: boolean
+  disabled?: boolean
+  noAnimation?: boolean
+  loading?: boolean
+  progress?: boolean
+  addTimeout?: boolean
+  tabIndex?: number
+  children?: React.ReactNode
+  onClick: (...props: any) => void
+  title?: string
+}
+
+export type ButtonTypes =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'ghost'
+  | 'link'
+
+type OUTLINE_IDENTIFIER = 'circular' | 'rectangle'
+
+export interface IconProps {
+  source: string | (() => any)
+  onClick?: (_?: any) => void | unknown
+  style?: object
+  outlined?: OUTLINE_IDENTIFIER
+  size?: number
+  height?: number
+  iconClass?: string
+  className?: string
+  iconColor?: string
+  isSvg?: boolean
 }

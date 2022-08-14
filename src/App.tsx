@@ -1,16 +1,15 @@
 import './App.css'
 import './localization/i18n'
 
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Button, Input } from './component/atom'
 import { GlobalModalWrapper } from './component/organism'
 import { ROUTES } from './constants/AppRoutes'
-import Home from './pages/home'
+import Login from './pages/login'
 import { CustomRoutes } from './routes/CustomRoute'
 import { GlobalThemeContextProvider } from './themes/ThemeContext'
-import { AsyncConfirmationModal, GlobalModal } from './utils'
+import { GlobalModal } from './utils'
 
 let globalModalRef: any = null
 
@@ -22,48 +21,12 @@ function App() {
     <BrowserRouter>
       <GlobalThemeContextProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           {CustomRoutes({ routes: ROUTES })}
         </Routes>
-        <TestModal />
         <GlobalModalWrapper ref={(el) => (globalModalRef = el)} />
       </GlobalThemeContextProvider>
     </BrowserRouter>
   )
 }
-
-const TestModal = () => {
-  const openModal = async () => {
-    GlobalModal.open({
-      title: 'This is Modal',
-      component: Content,
-      // isSlidePane: true,
-      // width: '300px',
-      props: {
-        hello: 'hello',
-      },
-      onClose: () => {},
-    })
-    // ConfirmationModal({
-    //   onOkay: () => {
-    //     console.log('handle onKay...')
-    //   },
-    // })
-    // const confirm = await AsyncConfirmationModal({})
-  }
-
-  return (
-    <div className="font-sans w-96 ml-10">
-      <Button onClick={openModal}>Open Modal</Button>
-      <Input />
-      <Input />
-    </div>
-  )
-}
-
-const Content = () => (
-  <div className="bg-red-200">
-    You have been selected for a chance to get one year of subscription to use Wikipedia for free!
-  </div>
-)
 export default App
